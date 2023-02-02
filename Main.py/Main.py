@@ -61,7 +61,8 @@ def ejecutarOpciones(opcion):
         case 5:
           return "hi"
         case 5:
-          return "mi"
+          print("¡Gracias por usar este Sistema!-:")
+          print(" ")            
         case _:
           print("Sorry!, Opción no Valida!")
       
