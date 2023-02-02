@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>a93bd5eb-a343-49b7-8e6b-3624efb62a44</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Main.py.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,7 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BD\conexion.py" />
-    <Compile Include="Main.py.py" />
+    <Compile Include="Main.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BD\" />
