@@ -45,7 +45,7 @@ def ejecutarOpciones(opcion):
         case 1:
             try:
               funciones.listarCursos()
-              print()
+              print("")
             except:
               print("Listar Cursos, Ocurrió un Error!")
               print(" ")
@@ -53,7 +53,7 @@ def ejecutarOpciones(opcion):
             curso = funciones.pedirDatosRegistro()
             try:
               funciones.registrarCurso(curso)
-              funciones.listarCursos()
+             
             except:
                print("Registrar Curso, Ocurrió un Error!")
                print(" ")

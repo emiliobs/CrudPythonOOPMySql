@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 from prettytable import PrettyTable
-x = PrettyTable()
+# x = PrettyTable()
 
 conexion = mysql.connector.connect(
     host="localhost",
@@ -16,15 +16,19 @@ conexion = mysql.connector.connect(
 
 def listarCursos():
   print("\nCursos: \n ")
-  
+  contador = 1
   myCursor = conexion.cursor()
   myCursor.execute("SELECT * FROM curso ORDER BY nombre ASC")
   cursos = myCursor.fetchall()
-  x.field_names =['Código', 'Nombre','Créditos']
   for curso in cursos:
-    x.add_row([curso[1], curso[2], curso[3]])
-  print(x)   
-print()
+    print(f"{contador}.- Código: {curso[1]} | Nombre: {curso[2]} => ({curso[3]} Créditos)")
+    contador += 1
+print(" ")
+  # x.field_names =['Código', 'Nombre','Créditos']
+#   for curso in cursos:
+#     x.add_row([curso[1], curso[2], curso[3]])
+#   print(x)   
+# print()
 
 
 def registrarCurso(curso):
