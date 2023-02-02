@@ -14,7 +14,7 @@ class DAO():
                   db = 'universidad'
                 )
         except Error as ex:
-                print(f"Eror al intentar la conexión: {ex}")
+                print(f"Error al intentar la conexion: {ex}")
 
     
     def listarCursos(self):
@@ -27,7 +27,7 @@ class DAO():
                 return resultado
 
             except Error as ex:
-                print(f"Eror al intentar la conexión: {ex}")
+                print(f"Eror al intentar la conexion: {ex}")
         
             
 
