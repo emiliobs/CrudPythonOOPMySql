@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BD\conexio.py" />
+    <Compile Include="BD\conexion.py" />
     <Compile Include="Main.py.py" />
   </ItemGroup>
   <ItemGroup>
