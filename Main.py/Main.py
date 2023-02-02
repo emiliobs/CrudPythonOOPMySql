@@ -65,11 +65,6 @@ def ejecutarOpciones(opcion):
           print("¡Gracias por usar este Sistema!-:")
           print(" ")            
         case _:
-          print("Sorry!, Opción no Valida!")
-      
-
-    
-   
-	
+          print("Sorry!, Opción no Valida!")	
 		
 menuPrincipal()
