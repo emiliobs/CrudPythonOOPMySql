@@ -25,48 +25,49 @@ def menuPrincipal():
 
 			if opcion < 1 or opcion > 5:
 
-						print("Opción incorrecta, ingrese nuevamente un Opción.....")
-						print()
+					print("Opción incorrecta, ingrese nuevamente un Opción.....")
+					print()
 
 			elif opcion == 5:
 
-						continuar = False
-						print("¡Gracias por usar este Sistema!-:")
-						print()
-
-						break
+					continuar = False
+					print("¡Gracias por usar este Sistema!-:")
+					print()
+					break
 
 			else:
-						opcionCorrecta = True
-						ejecutarOpciones(opcion)
+					opcionCorrecta = True
+					ejecutarOpciones(opcion)
 
 
 def ejecutarOpciones(opcion):
+  match opcion:
+        case 1:
+            try:
+              funciones.listarCursos()
+              print(" ")
+            except:
+              print("Listar Cursos, Ocurrió un Error!")
+              print(" ")
+        case 2:
+            curso = funciones.pedirDatosRegistro()
+            try:
+              funciones.registrarCurso(curso)
+            except:
+               print("Registrar Curso, Ocurrió un Error!")
+               print(" ")
+        case 3:
+            return "I'm a teapot"
+        case 5:
+          return "hi"
+        case 5:
+          return "mi"
+        case _:
+          print("Sorry!, Opción no Valida!")
+      
 
-	# dao = DAO()
-	match opcion:
-			case 1:
-					try:
-								cursos =  funciones.myConexion()							
-								if len(cursos) > 0:
-										funciones.listarCursos(cursos)
-										print()
-								else:
-									print("No se encontraron cursos.....")
-					except:	
-						print("Ocurrió un Error.....")
-			case 2:
-				print("Registro")
-			case 3:
-				print("Actualizar")
-			case 4:
-				print("Eliminar")
-			case 5:
-				print("¡Gracias por usar este Sistema!-:")
-				print()
-			case _:
-				print("Sorry, Opción no valida.....!")
-				print()
-
-
+    
+   
+	
+		
 menuPrincipal()
