@@ -20,13 +20,15 @@ def listarCursoById():
     myCursor = conexion.cursor()
     myCursor.execute("SELECT * FROM curso ORDER BY nombre ASC")
     cursos = myCursor.fetchall()
+    # print(cursos)
     # x = ""
     # for curso in cursos:
-    #     x = curso[1]
+    #     x = curso
+    # return x
     return cursos
 
+# listarCursoById()
 
-listarCursoById()
 # # curso1 = listarCurso1()
 # # print(curso1)
 # print(" ")
@@ -40,7 +42,7 @@ def listarCursos():
     cursos = myCursor.fetchall()
     for curso in cursos:
         print(
-            f"{contador}.- Código: {curso[1]} | Nombre: {curso[2]} => ({curso[3]} Créditos)")
+            f"{contador}.- Código: {curso[0]} | Nombre: {curso[1]} => ({curso[2]} Créditos)")
         contador += 1
 
     print(" ")
@@ -86,6 +88,48 @@ def pedirDatosRegistro():
     return curso
 
 
+def actualizarCursos(curso):
+    try:
+        myCurso = conexion.cursor()
+        sql = f"UPDATE curso SET  Nombre =  '{curso[1]}',  Creditos  = '{curso[2]}'  WHERE Codigo = '{curso[0]}'"
+        myCurso.execute(sql)
+        conexion.commit()
+        print("Curso Actualizado!")
+    except Error as ex:
+        print(f"Actualizar. Error al intentar la conexión: {ex}")
+
+
+def pedirDatosActualizar(cursos):
+    listarCursos()
+    existeCodigo = False
+    codigoEditar = input("Ingrese el Código a Editar: ")
+    for curso in cursos:
+        if curso[0] == codigoEditar:
+            existeCodigo = True
+            break
+    if existeCodigo:
+        nombre = input("Ingrese Nombre a Modificar: ")
+
+        creditosCorrectos = False
+        while (not creditosCorrectos):
+            creditos = input("Ingrese Créditos a Modificar: ")
+            if creditos.isnumeric():
+                if (int(creditos) > 0):
+                    creditosCorrectos = True
+                    creditos = int(creditos)
+                else:
+                    print("Los Créditos deben ser mayor a 0.")
+            else:
+                print("Créditos incorrectos: Debe ser un número únicamente.")
+
+        curso = (codigoEditar, nombre, creditos)
+
+    else:
+        curso = None
+
+    return curso
+
+
 def eliminarCurso(codigoEliminar):
     try:
         if not (codigoEliminar == None):
@@ -93,9 +137,8 @@ def eliminarCurso(codigoEliminar):
             sql = f"Delete From curso Where codigo = '{codigoEliminar}'"
             myCurso.execute(sql)
             conexion.commit()
-            print(f"Curso Eliminado con Código:-{codigoEliminar}-:")
+            print(f"Curso Eliminado con Código: ' {codigoEliminar} '")
             listarCursos()
-            print()
         else:
             print("================================")
             print("Código a Elimiar no Ingresado. ")
@@ -112,7 +155,7 @@ def pedirDatosEliminacion(codigos):
     print("")
     if not (codigoEliminar == ""):
         for codigo in codigos:
-            if codigo[1] == codigoEliminar:
+            if codigo[0] == codigoEliminar:
                 existeCodigo = True
                 break
         if not existeCodigo:

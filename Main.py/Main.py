@@ -1,5 +1,6 @@
 # from BD.conexion import DAO
 # import  conexion
+from mysql.connector import Error
 import funciones
 
 
@@ -44,10 +45,16 @@ def ejecutarOpciones(opcion):
     match opcion:
         case 1:
             try:
-                funciones.listarCursos()
-                print("")
-            except:
-                print("Listar Cursos, Ocurrió un Error!")
+                cursos = funciones.listarCursoById()
+
+                if (cursos != ""):
+                    funciones.listarCursos()
+                    print("")
+                else:
+                    print("No hay Cursos Registrado!")
+                    print("")
+            except Error as ex:
+                print(f"Listar Cursos, Ocurrió un Error: {ex}")
                 print(" ")
         case 2:
             curso = funciones.pedirDatosRegistro()
@@ -59,11 +66,29 @@ def ejecutarOpciones(opcion):
                 print("Registrar Curso, Ocurrió un Error!")
                 print(" ")
         case 3:
-            return "I'm a teapot"
+            try:
+                cursos = funciones.listarCursoById()
+                # print(cursos)
+                if (cursos != ""):
+                    curso = funciones.pedirDatosActualizar(cursos)
+
+                    if curso:
+                        funciones.actualizarCursos(curso)
+                        funciones.listarCursos()
+                        print()
+                    else:
+                        print("Código de curso a actualizar no encontrado.....")
+                        print()
+                else:
+                    print("No se econtro el curso!")
+                    print()
+            except Error as ex:
+                print(f"Actualizar. Ocurrió un Error: {ex}")
+                print()
         case 4:
             try:
                 cursos = funciones.listarCursoById()
-                if len(cursos) > 0:
+                if (cursos != 0):
                     codigoEliminar = funciones.pedirDatosEliminacion(cursos)
                     if not (codigoEliminar == ""):
                         funciones.eliminarCurso(codigoEliminar)
