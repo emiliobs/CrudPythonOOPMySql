@@ -67,7 +67,8 @@ def ejecutarOpciones(opcion):
                     if not (codigoEliminar == ""):
                         funciones.eliminarCurso(codigoEliminar)
                     else:
-                        print("Código del curso no encontrado.")
+                        print(
+                            "Código del curso no encontrado y Ingrese un Código valido")
                 else:
                     print("No se encontraron Cursos.")
             except:

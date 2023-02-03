@@ -88,13 +88,18 @@ def pedirDatosRegistro():
 
 def eliminarCurso(codigoEliminar):
     try:
-        myCurso = conexion.cursor()
-        sql = f"Delete From curso Where codigo = '{codigoEliminar}'"
-        myCurso.execute(sql)
-        conexion.commit()
-        print(f"Curso Eliminado con Código:{codigoEliminar}!")
-        listarCursos()
-        print()
+        if not (codigoEliminar == None):
+            myCurso = conexion.cursor()
+            sql = f"Delete From curso Where codigo = '{codigoEliminar}'"
+            myCurso.execute(sql)
+            conexion.commit()
+            print(f"Curso Eliminado con Código:{codigoEliminar}!")
+            listarCursos()
+            print()
+        else:
+            print("================================")
+            print("No existe Código a Elimiar: ")
+            print("================================")
     except Error as ex:
         print(f"Error al intentar la coneción con BD: {ex}")
         print()
@@ -105,12 +110,16 @@ def pedirDatosEliminacion(codigos):
     existeCodigo = False
     codigoEliminar = input("Ingrese el código del curso a Eiminar:")
     print("")
-    for codigo in codigos:
-        if codigo[1] == codigoEliminar:
-            existeCodigo = True
-            break
-
-    if not existeCodigo:
-        codigoEliminar = " "
-
-    return codigoEliminar
+    if not (codigoEliminar == ""):
+        for codigo in codigos:
+            if codigo[1] == codigoEliminar:
+                existeCodigo = True
+                break
+        if not existeCodigo:
+            codigoEliminar = "?"
+        return codigoEliminar
+    else:
+        # print("===============================================")
+        # print("Ingrese Código a Eliminar por Favor")
+        # print("===============================================")
+        pass
