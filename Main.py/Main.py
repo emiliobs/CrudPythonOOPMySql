@@ -53,6 +53,7 @@ def ejecutarOpciones(opcion):
             curso = funciones.pedirDatosRegistro()
             try:
                 funciones.registrarCurso(curso)
+                funciones.listarCursos()
 
             except:
                 print("Registrar Curso, Ocurrió un Error!")

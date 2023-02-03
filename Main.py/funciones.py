@@ -93,12 +93,12 @@ def eliminarCurso(codigoEliminar):
             sql = f"Delete From curso Where codigo = '{codigoEliminar}'"
             myCurso.execute(sql)
             conexion.commit()
-            print(f"Curso Eliminado con Código:{codigoEliminar}!")
+            print(f"Curso Eliminado con Código:-{codigoEliminar}-:")
             listarCursos()
             print()
         else:
             print("================================")
-            print("No existe Código a Elimiar: ")
+            print("Código a Elimiar no Ingresado. ")
             print("================================")
     except Error as ex:
         print(f"Error al intentar la coneción con BD: {ex}")
@@ -108,7 +108,7 @@ def eliminarCurso(codigoEliminar):
 def pedirDatosEliminacion(codigos):
     listarCursos()
     existeCodigo = False
-    codigoEliminar = input("Ingrese el código del curso a Eiminar:")
+    codigoEliminar = input("Ingrese el código del curso a Eiminar: ")
     print("")
     if not (codigoEliminar == ""):
         for codigo in codigos:
@@ -116,7 +116,7 @@ def pedirDatosEliminacion(codigos):
                 existeCodigo = True
                 break
         if not existeCodigo:
-            codigoEliminar = "?"
+            codigoEliminar = ""
         return codigoEliminar
     else:
         # print("===============================================")
