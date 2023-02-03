@@ -97,8 +97,8 @@ def ejecutarOpciones(opcion):
                             "Código del curso no encontrado y Ingrese un Código valido")
                 else:
                     print("No se encontraron Cursos.")
-            except:
-                print("Eliminar, Ocurrio un Error!")
+            except Error as ex:
+                print(f"Eliminar, Ocurrio un Error: {ex}")
             print("")
         case 5:
             print("¡Gracias por usar este Sistema!-:")
