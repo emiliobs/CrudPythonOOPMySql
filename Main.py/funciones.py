@@ -1,7 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
 from prettytable import PrettyTable
-# x = PrettyTable()
 
 conexion = mysql.connector.connect(
     host="localhost",
@@ -35,22 +34,32 @@ def listarCursoById():
 
 
 def listarCursos():
+    x = PrettyTable()
     print("\nCursos: \n ")
     contador = 1
+    myCursor = ""
     myCursor = conexion.cursor()
     myCursor.execute("SELECT * FROM curso ORDER BY nombre ASC")
+    cursos = ""
     cursos = myCursor.fetchall()
-    for curso in cursos:
-        print(
-            f"{contador}.- Código: {curso[0]} | Nombre: {curso[1]} => ({curso[2]} Créditos)")
-        contador += 1
+    # for curso in cursos:
+    #     print(
+    #         f"{contador}.- Código: {curso[0]} | Nombre: {curso[1]} => ({curso[2]} Créditos)")
+    #     contador += 1
 
-    print(" ")
-    # x.field_names =['Código', 'Nombre','Créditos']
-    #   for curso in cursos:
-    #     x.add_row([curso[1], curso[2], curso[3]])
-    #   print(x)
+    # print(" ")
+    x.field_names = ['Código', 'Nombre', 'Créditos']
+    for curso in cursos:
+        x.add_row([curso[0], curso[1], curso[2]])
+        # return x
+    print(x)
+    # listarCursos()
+
     # print()
+
+
+# print("Desde funciones")
+# listarCursos()
 
 
 def registrarCurso(curso):
@@ -95,6 +104,7 @@ def actualizarCursos(curso):
         myCurso.execute(sql)
         conexion.commit()
         print("Curso Actualizado!")
+        listarCursos()
     except Error as ex:
         print(f"Actualizar. Error al intentar la conexión: {ex}")
 

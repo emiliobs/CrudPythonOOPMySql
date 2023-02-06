@@ -46,7 +46,6 @@ def ejecutarOpciones(opcion):
         case 1:
             try:
                 cursos = funciones.listarCursoById()
-
                 if (cursos != ""):
                     funciones.listarCursos()
                     print("")
@@ -61,7 +60,6 @@ def ejecutarOpciones(opcion):
             try:
                 funciones.registrarCurso(curso)
                 funciones.listarCursos()
-
             except:
                 print("Registrar Curso, Ocurrió un Error!")
                 print(" ")
@@ -71,7 +69,6 @@ def ejecutarOpciones(opcion):
                 # print(cursos)
                 if (cursos != ""):
                     curso = funciones.pedirDatosActualizar(cursos)
-
                     if curso:
                         funciones.actualizarCursos(curso)
                         funciones.listarCursos()
