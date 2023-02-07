@@ -77,11 +77,19 @@ def pedirDatosRegistro():
     codigoCorrecto = False
     while (not codigoCorrecto):
         codigo = input("Ingrese Código: ")
-        if len(codigo) == 5:
-            codigoCorrecto = True
+        if (codigo.isalnum()):
+            if len(codigo) == 5:
+                codigoCorrecto = True
+            else:
+                print("Código incorrecto: Debe tener 5 dígitios.")
         else:
-            print("Código incorrecto: Debe tener 5 dígitios.")
+            print("Error, Por favor Ingrese solo Número o Letras como Código del Curso.")
     nombre = input("Ingrese Nombre: ")
+    if (not nombre):
+        print("Por favor Ingrese un Nombre del Curso.")
+        return
+    else:
+        pass
     creditoCorrecto = False
     while (not creditoCorrecto):
         creditos = input("Ingrese Créditos: ")
